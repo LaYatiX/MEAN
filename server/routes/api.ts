@@ -37,26 +37,26 @@ interface Post {
 }
 
 namespace Route {
-    export let router: express.Router = express.Router();
-    const API = "https://jsonplaceholder.typicode.com";
+  export let router: express.Router = express.Router();
+  const API: string = "https://jsonplaceholder.typicode.com";
 
-    router.get("/", function(req, res) {
-        res.send("Tu bedzie API home page");
-    });
+  router.get("/", function(req, res) {
+    res.send("Tu bedzie API home page");
+  });
 
-    // Get all posts
-    router.get('/posts', (req, res) => {
-      // Get posts from the mock api
-      // This should ideally be replaced with a service that connects to MongoDB
+  // Get all posts
+  router.get('/posts', (req, res) => {
+    // Get posts from the mock api
+    // This should ideally be replaced with a service that connects to MongoDB
 
-      axios.get(`${API}/posts`)
-        .then(posts => {
-          res.status(200).json(posts.data);
-        })
-        .catch(error => {
-          res.status(500).send(error)
-        });
-    });
+    axios.get(`${API}/posts`)
+      .then((posts: any) => {
+        res.status(200).json(posts.data);
+      })
+      .catch((error:express.Errback) => {
+        res.status(500).send(error)
+      });
+  });
 
 }
 
